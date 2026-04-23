@@ -7,10 +7,10 @@ from habits.views import HabitViewSet, PublicHabitListView
 app_name = HabitsConfig.name
 
 router = SimpleRouter()
-router.register("", HabitViewSet)
+router.register(r"", HabitViewSet, basename="habits")
 
 urlpatterns = [
-    path("public_habits", PublicHabitListView.as_view(), name="public_habits"),
+    path("public_habits/", PublicHabitListView.as_view(), name="public_habits"),
 ]
 
 urlpatterns += router.urls

@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "drf_yasg",
     "django_celery_beat",
     "rest_framework",
     "rest_framework_simplejwt",
@@ -140,9 +141,9 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 CELERY_BEAT_SCHEDULE = {
-    "deactivate_inactive_users": {
-        "task": "users.tasks.deactivate_inactive_users",
-        "schedule": timedelta(days=1),
+    "check_habit_reminders": {
+        "task": "tg_bot.tasks.check_habit_reminders",
+        "schedule": timedelta(minutes=1),
     },
 }
 
