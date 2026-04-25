@@ -21,11 +21,11 @@ def send_telegram_message(chat_id, message):
     # except Exception as e:
     #     return {"error": str(e)}
     print(f"\n{'=' * 60}")
-    print(" [TELEGRAM УВЕДОМЛЕНИЕ - ЭМУЛЯЦИЯ]")
-    print("    Кому (Chat ID): {chat_id}")
-    print(f"   Время: {timezone.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("    Текст сообщения:")
-    print(f"   {message}")
+    print("[TELEGRAM УВЕДОМЛЕНИЕ - ЭМУЛЯЦИЯ]")
+    print(f"Кому (Chat ID): {chat_id}")
+    print(f"Время: {timezone.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("Текст сообщения:")
+    print(f"{message}")
     print(f"{'=' * 60}\n")
     return {"ok": True, "emulated": True, "chat_id": chat_id}
 

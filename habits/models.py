@@ -67,7 +67,9 @@ class Habit(models.Model):
                 )
 
         # ПРАВИЛО 5: Периодичность от 1 до 7 дней
-        if self.periodicity < 1 or self.periodicity > 7:
+        if self.periodicity is not None and (
+            self.periodicity < 1 or self.periodicity > 7
+        ):
             raise ValidationError("Периодичность должна быть от 1 до 7 дней")
 
         # Проверка на самоссылку
