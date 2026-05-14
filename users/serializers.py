@@ -11,9 +11,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         validators=[validate_password],
         style={"input_type": "password"},
     )
-    password2 = serializers.CharField(
-        write_only=True, required=True, style={"input_type": "password"}
-    )
+    password2 = serializers.CharField(write_only=True, required=True, style={"input_type": "password"})
 
     class Meta:
         model = User

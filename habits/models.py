@@ -14,9 +14,7 @@ class Habit(models.Model):
     place = models.CharField(max_length=255, verbose_name="Место")
     time = models.TimeField(verbose_name="Время")
     action = models.CharField(max_length=255, verbose_name="Действие")
-    is_pleasant = models.BooleanField(
-        default=False, verbose_name="Признак приятной привычки"
-    )
+    is_pleasant = models.BooleanField(default=False, verbose_name="Признак приятной привычки")
     related_habit = models.ForeignKey(
         "self",
         null=True,
@@ -25,12 +23,8 @@ class Habit(models.Model):
         verbose_name="Связанная привычка",
         limit_choices_to={"is_pleasant": True},
     )
-    periodicity = models.PositiveIntegerField(
-        default=1, verbose_name="Периодичность(дни)"
-    )
-    reward = models.CharField(
-        max_length=255, null=True, blank=True, verbose_name="Вознаграждение"
-    )
+    periodicity = models.PositiveIntegerField(default=1, verbose_name="Периодичность(дни)")
+    reward = models.CharField(max_length=255, null=True, blank=True, verbose_name="Вознаграждение")
     duration = models.PositiveIntegerField(verbose_name="Время на выполнение(сек)")
     is_public = models.BooleanField(default=False, verbose_name="Признак публичности")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
@@ -41,35 +35,25 @@ class Habit(models.Model):
 
         # ПРАВИЛО 1: Нельзя одновременно заполнять reward и related_habit
         if self.reward and self.related_habit:
-            raise ValidationError(
-                "Нельзя одновременно указывать вознаграждение и связанную привычку"
-            )
+            raise ValidationError("Нельзя одновременно указывать вознаграждение и связанную привычку")
 
         # ПРАВИЛО 2: Время выполнения не больше 120 секунд
         if self.duration > 120:
-            raise ValidationError(
-                "Время выполнения привычки не должно превышать 120 секунд"
-            )
+            raise ValidationError("Время выполнения привычки не должно превышать 120 секунд")
 
         # ПРАВИЛО 3: Связанная привычка может быть только с признаком is_pleasant=True
         if self.related_habit and not self.related_habit.is_pleasant:
-            raise ValidationError(
-                "Связанная привычка должна быть приятной (is_pleasant=True)"
-            )
+            raise ValidationError("Связанная привычка должна быть приятной (is_pleasant=True)")
 
         # ПРАВИЛО 4: У приятной привычки не может быть reward или related_habit
         if self.is_pleasant:
             if self.reward:
                 raise ValidationError("Приятная привычка не может иметь вознаграждение")
             if self.related_habit:
-                raise ValidationError(
-                    "Приятная привычка не может иметь связанную привычку"
-                )
+                raise ValidationError("Приятная привычка не может иметь связанную привычку")
 
         # ПРАВИЛО 5: Периодичность от 1 до 7 дней
-        if self.periodicity is not None and (
-            self.periodicity < 1 or self.periodicity > 7
-        ):
+        if self.periodicity is not None and (self.periodicity < 1 or self.periodicity > 7):
             raise ValidationError("Периодичность должна быть от 1 до 7 дней")
 
         # Проверка на самоссылку
