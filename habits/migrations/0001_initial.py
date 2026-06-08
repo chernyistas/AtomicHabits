@@ -31,15 +31,11 @@ class Migration(migrations.Migration):
                 ("action", models.CharField(max_length=255, verbose_name="Действие")),
                 (
                     "is_pleasant",
-                    models.BooleanField(
-                        default=False, verbose_name="Признак приятной привычки"
-                    ),
+                    models.BooleanField(default=False, verbose_name="Признак приятной привычки"),
                 ),
                 (
                     "periodicity",
-                    models.PositiveIntegerField(
-                        default=1, verbose_name="Периодичность(дни)"
-                    ),
+                    models.PositiveIntegerField(default=1, verbose_name="Периодичность(дни)"),
                 ),
                 (
                     "reward",
@@ -52,21 +48,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "duration",
-                    models.PositiveIntegerField(
-                        verbose_name="Время на выполнение(сек)"
-                    ),
+                    models.PositiveIntegerField(verbose_name="Время на выполнение(сек)"),
                 ),
                 (
                     "is_public",
-                    models.BooleanField(
-                        default=False, verbose_name="Признак публичности"
-                    ),
+                    models.BooleanField(default=False, verbose_name="Признак публичности"),
                 ),
                 (
                     "created_at",
-                    models.DateTimeField(
-                        auto_now_add=True, verbose_name="Дата создания"
-                    ),
+                    models.DateTimeField(auto_now_add=True, verbose_name="Дата создания"),
                 ),
                 (
                     "updated_at",
