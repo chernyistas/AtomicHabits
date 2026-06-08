@@ -11,9 +11,7 @@ class UserModelTest(TestCase):
 
     def test_create_user(self):
         """Тест создания пользователя"""
-        user = User.objects.create_user(
-            username="testuser", password="testpass123", tg_chat_id="123456789"
-        )
+        user = User.objects.create_user(username="testuser", password="testpass123", tg_chat_id="123456789")
         self.assertEqual(user.username, "testuser")
         self.assertEqual(user.tg_chat_id, "123456789")
 

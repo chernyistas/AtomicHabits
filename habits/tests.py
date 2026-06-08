@@ -15,9 +15,7 @@ class HabitModelTest(TestCase):
 
     def setUp(self):
         """Подготовка данных перед каждым тестом"""
-        self.user = User.objects.create_user(
-            username="user", password="testpass123", tg_chat_id="123456789"
-        )
+        self.user = User.objects.create_user(username="user", password="testpass123", tg_chat_id="123456789")
         self.pleasant_habit = Habit.objects.create(
             owner=self.user,
             place="Ванна",
@@ -100,12 +98,8 @@ class HabitAPITest(APITestCase):
 
     def setUp(self):
         """Подготовка данных перед каждым тестом"""
-        self.user = User.objects.create_user(
-            username="user", password="testpass123", tg_chat_id="123456789"
-        )
-        self.other_user = User.objects.create_user(
-            username="otheruser", password="testpass123"
-        )
+        self.user = User.objects.create_user(username="user", password="testpass123", tg_chat_id="123456789")
+        self.other_user = User.objects.create_user(username="otheruser", password="testpass123")
         self.pleasant_habit = Habit.objects.create(
             owner=self.user,
             place="Ванна",
@@ -259,9 +253,7 @@ class HabitSerializerTest(TestCase):
 
     def setUp(self):
         """Подготовка данных перед каждым тестом"""
-        self.user = User.objects.create_user(
-            username="testuser", password="testpass123"
-        )
+        self.user = User.objects.create_user(username="testuser", password="testpass123")
         self.serializer_data = {
             "owner": self.user.id,
             "place": "Дома",
